@@ -1,24 +1,35 @@
 body {
   font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f4f4f4;
   margin: 0;
+  padding: 0;
+  background: #f4f4f4;
 }
 
 .qr-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   padding: 20px;
+  width: 100%;
 }
 
 .qr-item {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+}
+
+.qr-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.qr-item p {
+  margin: 15px 0;
+  font-size: 1.1em;
+  word-break: break-all;
 }
 
 .modal {
@@ -31,6 +42,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 .modal-content {
@@ -38,13 +50,17 @@ body {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 300px;
+  width: 90%;
+  max-width: 300px;
 }
 
 input {
   width: 90%;
-  padding: 8px;
-  margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 button {
@@ -55,6 +71,11 @@ button {
   color: white;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 button.close {
@@ -65,13 +86,45 @@ button.close {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background: #3498db;
   color: white;
   font-size: 24px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 900;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .app-description {
+    padding: 20px;
+  }
+
+  .qr-list {
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .qr-item {
+    margin: 0;
+    width: 100%;
+  }
+
+  .fab {
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
 }

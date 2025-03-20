@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 const QrGenerator = ({ onClose, onAddQr }) => {
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleGenerate = () => {
-    if (text.trim() !== "") {
-      onAddQr(text); // ✅ Ensures the text is passed correctly
-      onClose(); // ✅ Closes the modal after generating QR
+    if (url.trim() !== "" && title.trim() !== "") {
+      onAddQr({ title, url }); // Pass both title and URL
+      onClose();
     }
   };
 
@@ -16,9 +17,15 @@ const QrGenerator = ({ onClose, onAddQr }) => {
         <h2>Create QR Code</h2>
         <input
           type="text"
-          placeholder="Enter text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          placeholder="Enter title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Enter URL"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
         />
         <button onClick={handleGenerate}>Generate</button>
         <button className="close" onClick={onClose}>
